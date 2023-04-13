@@ -111,7 +111,7 @@ console.log(selectRandom(suspectsArray));
 console.log(selectRandom(weaponsArray));
 console.log(selectRandom(roomsArray))
 
-//creamos una variable que contenga los elementos elegidos por la funcion anterior
+//creamos una funcion que nos devuelve un objeto con 3 propiedades, que se les da un valor mediante la funcion anterior
 function pickMystery() {
   const mystery = {
     suspect: selectRandom(suspectsArray),
@@ -126,10 +126,16 @@ console.log(pickMystery());
 
 // ITERATION 3
 
-//creamos una funcion que nos devuelva el nombre y apellido del sospechoso, el arma yt la sala
+// creamos una funcion que nos devuelva el nombre y apellido del sospechoso, el arma yt la sala
+// como envelope tiene las 3 propiedades ({suspect, weapon, room}), accedemos a cada una de ellas y posteriormente a la propiedad siguiente dentro de ellas
+// envelope.{suspect, weapon, room}. --> 
+//                                   -->  .suspect.{firstName, lastName, ocuppation...}
+//                                   -->  .weapon.{name, weigth}
+//                                   -->  .room.{name}
 function revealMystery(envelope) {
-  const { suspect, weapon, room } = envelope;
-  return `${suspect.firstName} ${suspect.lastName} killed Mr. Boddy using the ${weapon.name} in the ${room.name}!`;
+  return `${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`;
+  
 }
+
 //comprobamos
 console.log(revealMystery(pickMystery()));
